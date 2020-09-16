@@ -24,7 +24,7 @@ linux：python -m SimpleHTTPServer
 
 qemu：wget  12.0.0.2:8000/embedded_heap
 
-![image-20200831110650474](C:\Users\YCNN\Desktop\embedded\embedded_img\image-20200831110650474.png)
+![image-20200831110650474](./embedded_img/image-20200831110650474.png)
 
 ### 启动
 
@@ -35,7 +35,7 @@ $ mv libuClibc-0.9.33.2.so libc.so.0
 $ mv ld-uClibc-0.9.33.2.so ld-uClibc.so.0
 ```
 
-![image-20200831191612015](C:\Users\YCNN\Desktop\embedded\embedded_img\image-20200831191612015.png)
+![image-20200831191612015](./embedded_img/image-20200831191612015.png)
 
 qemu-mips  -L ./ ./embedded_heap
 
@@ -47,7 +47,7 @@ qemu-mips  -L ./ ./embedded_heap
 
 还要修改lib文件下链接文件的权限
 
-![image-20200831191636914](C:\Users\YCNN\Desktop\embedded\embedded_img\image-20200831191636914.png)
+![image-20200831191636914](./embedded_img/image-20200831191636914.png)
 
 
 
