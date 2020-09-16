@@ -1,0 +1,3 @@
+D:/Software/clionworkspace/sakura/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Software/clionworkspace/sakura/cmake-build-debug/CMakeFiles/sakura.dir
+D:/Software/clionworkspace/sakura/cmake-build-debug/CMakeFiles/rebuild_cache.dir

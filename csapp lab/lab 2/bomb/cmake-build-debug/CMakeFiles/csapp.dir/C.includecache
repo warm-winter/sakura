@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/YCNN/Desktop/csapp lab/lab 2/bomb/bomb.c
+stdio.h
+-
+stdlib.h
+-
+support.h
+C:/Users/YCNN/Desktop/csapp lab/lab 2/bomb/support.h
+phases.h
+C:/Users/YCNN/Desktop/csapp lab/lab 2/bomb/phases.h
+

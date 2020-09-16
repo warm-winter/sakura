@@ -1,0 +1,235 @@
+#####################################################################
+# CS:APP Data Lab
+# Directions to Instructors
+#指导老师的方向
+# May 31, 2011: Now includes the "Beat the Prof" contest
+#
+# Copyright (c) 2002-2018, R. Bryant and D. O'Hallaron
+######################################################################
+
+This directory contains the files that you will need to run the CS:APP
+Data Lab, which helps develops the student's understanding of bit
+representations, two's complement arithmetic, and IEEE floating point.
+此目录包含运行CS：APP所需的文件数据实验室，有助于发展学生对位的理解表示法，二进制补码算法和IEEE浮点数。
+
+For fun, we've also provided a new user-level HTTP-based "Beat the
+Prof" contest that replaces the old email-based version. The new
+contest is completely self-contained and does not require root
+password.  The only requirement is that you have a user account on a
+Linux machine with an IP address.
+为了好玩，我们还提供了一个基于HTTP的新的用户级“ Beat the
+教授”竞赛，它将取代基于电子邮件的旧版本。
+比赛是完全独立的，不需要root
+密码。唯一的要求是您必须在
+具有IP地址的Linux机器。
+
+System requirements: Uses bison and flex to build dlc.
+系统要求：使用bison和flex构建dlc。
+************
+1. Overview概述
+************
+
+In this lab, students work on a C file, called bits.c, that consists
+of a series of programming "puzzles".  Each puzzle is an empty
+function body that must be completed so that it implements a specified
+mathematical function, such as "absolute value". Students must solve
+the non-floating point puzzles using only straight-line C code and a
+restricted set of C arithmetic and logical operators. For the
+floating-point puzzles they can use conditionals and arbitrary
+operators.
+在本实验中，学生将研究一个名为bits.c的C文件，该文件由一系列编程“难题”。每个难题都是空的必须完成的功能体，以实现指定的功能数学函数，例如“绝对值”。学生必须解决非浮点拼图仅使用直线C代码和受限制的C算术和逻辑运算符集。为了浮点拼图，他们可以使用条件和任意操作员。
+
+Students use the following three tools to check their work.
+Instructors use the same tools to assign grades.
+学生使用以下三种工具来检查他们的工作。教师使用相同的工具来分配成绩。
+
+1. dlc: A "data lab compiler" that checks each function in bits.c for
+compliance with the coding guidelines, checking that the students use
+less than the maximum number of operators, that they use only
+straight-line code, and that they use only legal operators. The
+sources and a Linux binary are included with the lab.
+1. dlc：一种“数据实验室编译器”，用于检查bits.c中的每个函数是否存在遵守编码准则，检查学生是否使用
+少于他们仅使用的最大运算符数直线代码，并且它们仅使用合法运算符。的实验中包括源代码和Linux二进制文件。
+
+2. btest: A test harness that checks the functions in bits.c for
+correctness. This tool has been significantly improved, now checking
+wide swaths around the edge cases for integers and floating point
+representations such as 0, Tmin, denorm-norm boundary, and inf.
+2. btest：一种测试工具，用于检查bits.c中的功能是否存在正确性。此工具已得到显着改进，现在可以检查整数和浮点数的边缘情况下的宽幅表示形式，例如0，Tmin，分母-范数边界和inf。
+
+3. driver.pl: A autograding driver program that uses dlc and btest to
+check each test function in bits.c for correctness and adherence to
+the coding guidelines
+3. driver.pl：使用dlc和btest进行自动分级的驱动程序检查bits.c中的每个测试功能是否正确并遵守编码准则
+
+The default version of the lab consists of 15 puzzles, in
+./src/selections.c, chosen from a set of 73 standard puzzles defined
+in the directory ./src/puzzles/. You can customize the lab from term
+to term by choosing a different set of puzzles from the standard set
+of puzzles.
+实验室的默认版本包含15个难题，其中./src/selections.c，从定义的73个标准拼图中选择在目录./src/puzzles/中。您可以根据条件自定义实验室通过从标准集中选择另一组不同的难题来进行术语的难题。
+
+You can also define new puzzles of your own and add them to the
+standard set. See ./src/README for instructions on how to add new
+puzzles to the standard set.
+您也可以定义自己的新拼图并将其添加到标准集。有关如何添加新的说明，请参见./src/README。困惑的标准集。
+
+NOTE: If you define new puzzles, please send them to me (Dave
+O'Hallaron, droh@cs.cmu.edu) so that I can add them to the standard
+set of puzzles in the data lab distribution.
+注意：如果您定义了新的拼图，请将其发送给我（戴夫O'Hallaron，droh @ cs.cmu.edu），以便我可以将它们添加到标准中数据实验室分布中的难题。
+
+********
+2. Files
+********
+
+All CS:APP labs have the same simple top-level directory structure:
+所有CS：APP实验室都具有相同的简单顶级目录结构：
+
+Makefile	   Builds the entire lab.
+README		   This file.
+src/		   Contains all source files for the lab.
+datalab-handout/   Handout directory that goes to the students. Generated
+		   by the Makefile from files in ./src. Never modify anything
+		   in this directory. 
+grade/		   Autograding scripts that instructors can use to 
+		   grade student handins.
+writeup/	   Sample Latex lab writeup.
+contest/           Everything needed for the optional "Beat the Prof" contest.
+
+Makefile	   构建整个实验室。
+README		   This file.
+src/		   包含实验室的所有源文件。
+datalab-handout/   学生的讲义目录。产生的
+		   由Makefile从./src中的文件。永远不要修改任何东西
+		   在此目录中。 
+grade/		   自动评分的脚本
+writeup/	   Sample Latex lab writeup.
+contest/           可选的“击败教授”竞赛所需的一切。
+********************
+3. Building the Lab建立实验室
+*******************
+
+Step 0. If you decide to run the "Beat the Prof" contest (section 5),
+then edit the ./contest/Contest.pm file so that the driver knows where
+to send the results. See ./contest/README for the simple
+instructions. If you decide *not* to offer the contest, then do
+nothing in this step.
+步骤0。如果您决定举办“击败教授”竞赛（第5节），然后编辑./contest/Contest.pm文件，以便驱动程序知道位置发送结果。请参阅./contest/README以获取简单信息说明。如果您决定不参加比赛，那就去做吧在此步骤中没有任何操作。
+
+
+Step 1. Select the puzzles you want to include by editing the file
+./src/selections.c.
+步骤1.通过编辑文件选择要包括的难题./src/selections.c。
+
+The default ./src/selections.c comes from a previous instance of the
+Data Lab at CMU.  The file ./src/selections-all.c contains the
+complete list of puzzles to choose from.
+默认的./src/selections.c来自以前的CMU的数据实验室。文件./src/selections-all.c包含完整的拼图列表供您选择。
+
+Step 2. Modify the Latex lab writeup in ./writeup/datalab.tex to 
+tailor it for your course. 
+步骤2.将./writeup/datalab.tex中的Latex实验室内容修改为 为您的课程量身定制。 
+
+Step 3. Type the following in the current directory:
+     unix> make clean
+     unix> make 
+步骤3.在当前目录中键入以下内容：
+
+The Makefile generates the btest source files, builds the dlc binary
+(if necessary), formats the lab writeup, and then copies btest, the
+dlc binary, and the driver to the handout directory.  After that, it
+builds a tarfile of the handout directory (in ./datalab-handout.tar)
+that you can then hand out to students.
+Makefile生成btest源文件，生成dlc二进制文件（如有必要），格式化实验室文章，然后复制btest，dlc二进制文件，以及驱动程序到讲义目录。之后，它构建讲义目录的tarfile（在./datalab-handout.tar中）然后您可以分发给学生。
+
+Note on Binary Portability: dlc is distributed in the datalab-handout
+directory as a binary. Linux binaries are not always portable across
+distributions due to different versions of dynamic libraries. You'll
+need to be careful to compile dlc on a machine that is compatible with
+those that the students will be using.
+关于二进制可移植性的注释：dlc分发在datalab讲义中目录为二进制。Linux二进制文件并非总是可移植的分布是由于动态库的版本不同。你会需要注意在与以下设备兼容的计算机上编译DLC学生将使用的那些。
+
+Note: Running "make" also automatically generates the solutions to the
+puzzles, which you can find in ./src/bits.c and ./src/bits.c-solution.
+注意：运行“ make”也会自动生成解决方案拼图，您可以在./src/bits.c和./src/bits.c-solution中找到。
+
+******************
+4. Grading the Lab实验室评分
+******************
+
+There is a handy autograder script that automatically grades your
+students' handins.  See ./grade/README for instructions.
+有一个方便的自动分级脚本，可以自动为您评分学生的手。有关说明，请参见./grade/README。
+**************************
+5. "Beat the Prof" Contest“击败教授”竞赛
+**************************
+
+For fun, we've included an optional "Beat the Prof" contest, where
+students compete against themselves and the instructor. The goal is to
+solve each Data Lab puzzle using the fewest number of
+operators. Students who match or beat the instructor's operator count
+for each puzzle are winners. See ./contest/README for the simple
+instructions on how to set up the contest.
+
+NOTE: The contest is completely optional. Whether you decide to
+offer it or not has no affect on how you build and distribute the lab.
+
+NOTE: If you do decide to offer the contest, then you should configure
+the contest *before* you build the lab, so that the driver knows the
+server and port to send the contest results of each student (using the
+constants defined in the ./src/Driverhdrs.pm file, which is
+autogenerated from the ./contest/Contest.pm config file).
+
+If you decide to offer the contest *after* you've built and handed out
+the lab to the students, you're still OK:
+
+1) Configure the contest as described in contest/Makefile
+
+2) Rebuild the lab in the usual way:
+   linux> cd datalab
+   linux> make
+
+3) Distribute the new ./src/Driverhdrs.pm file to the students.
+
+
+***************************
+6. Experimental BDD checker
+***************************
+
+For fun, we have included an experimental correctness checker based on
+binary decision diagrams (BDDs) (R. E. Bryant, IEEE Transactions on
+Computers, August, 1986) that uses the CUDD BDD package from the
+University of Colorado. The BDD checker does an exhaustive test of the
+test functions in bits.c, formally verifying the correctness of each
+test function against a reference solution for *ALL* possible input
+values. For functions that differ from the reference solution, the BDD
+checker produces a counterexample in the form of a set of function
+arguments that cause the test solution to differ from the reference
+solution.
+
+The sources are included in ./src/bddcheck. To compile:
+
+  unix> cd src/bddcheck
+  unix> make clean
+  unix> make
+
+To use BDDs to check ./src/bits.c for correctness:
+
+  unix> cd src
+  unix> ./bddcheck/check.pl     # with error messages and counterexamples
+  unix> ./bddcheck/check.pl -g  # compact tabular output with no error messages
+
+Note that check.pl must be run from the parent directory of ./bddcheck.
+
+We've been using this BDD checker instead of btest at CMU for several
+years and the code appears to be stable. The main weakness is in the
+Perl code that extracts the functions from bits.c. It usually works,
+but some things -- such as calls to other functions, or functions that
+don't end with a single brace -- confuse it. So we're reluctant to
+make it the default checker for the distributed CS:APP labs. However,
+if you have any questions about the correctness of a particular
+solution, then this is the authoritative way to decide.
+
+Please send any comments about the BDD checker to randy.bryant@cs.cmu.edu.
+

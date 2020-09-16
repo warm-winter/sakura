@@ -1,0 +1,3 @@
+C:/Users/YCNN/Desktop/csapp lab/lab 2/bomb/cmake-build-debug/CMakeFiles/csapp.dir
+C:/Users/YCNN/Desktop/csapp lab/lab 2/bomb/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/YCNN/Desktop/csapp lab/lab 2/bomb/cmake-build-debug/CMakeFiles/rebuild_cache.dir

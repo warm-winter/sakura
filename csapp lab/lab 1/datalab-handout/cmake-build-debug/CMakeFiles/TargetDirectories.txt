@@ -1,0 +1,3 @@
+/home/yan/csapp/datalab-handout/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/yan/csapp/datalab-handout/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/yan/csapp/datalab-handout/cmake-build-debug/CMakeFiles/csapp.dir

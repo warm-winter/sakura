@@ -1,0 +1,3 @@
+"D:\Software\clion\CLion 2020.1.1\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\csapp.dir/objects.a
+D:\studySoftware\Dev-Cpp\MinGW64\bin\ar.exe cr CMakeFiles\csapp.dir/objects.a @CMakeFiles\csapp.dir\objects1.rsp
+D:\studySoftware\Dev-Cpp\MinGW64\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\csapp.dir/objects.a -Wl,--no-whole-archive  -o csapp.exe -Wl,--out-implib,libcsapp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\csapp.dir\linklibs.rsp

@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/YCNN/Desktop/csapp lab/lab 5/cachelab-handout/cache2.c
+getopt.h
+-
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+assert.h
+-
+math.h
+-
+limits.h
+-
+string.h
+-
+errno.h
+-
+stdbool.h
+-
+
